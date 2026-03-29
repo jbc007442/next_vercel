@@ -1,9 +1,6 @@
-import otpGenerator from 'otp-generator';
+export const generateOTP = (): string => {
+  const array = new Uint32Array(6);
+  crypto.getRandomValues(array);
 
-export const generateOTP = () => {
-  return otpGenerator.generate(6, {
-    upperCaseAlphabets: false,
-    lowerCaseAlphabets: false, // 👈 ADD THIS
-    specialChars: false,
-  });
+  return Array.from(array, (num) => (num % 10).toString()).join('');
 };
